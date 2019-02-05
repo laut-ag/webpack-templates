@@ -4,7 +4,7 @@
   "description": "laut.fm basic webpack configuration",
   "main": "index.js",
   "scripts": {
-    "postinstall": "cp index.js $INIT_CWD/webpack.config.js"
+    "postinstall": "./bootstrap.sh $INIT_CWD"
   },
   "author": "Vern Hockney <vern@laut.fm>",
   "license": "MIT",
