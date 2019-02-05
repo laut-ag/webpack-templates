@@ -49,7 +49,7 @@ module.exports = ( env = {} ) => {
 							loader: 'css-loader',
 							options: { importLoaders: 1 },
 						},
-						{ loaders: 'postcss-loader' },
+						{ loader: 'postcss-loader' },
 						{ loader: 'less-loader' },
 					],
 				},
