@@ -9,6 +9,7 @@
   "author": "Vern Hockney <vern@laut.fm>",
   "license": "MIT",
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
     "acorn": "^6.0.7",
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^1.0.1",
