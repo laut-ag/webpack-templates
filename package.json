@@ -26,7 +26,6 @@
     "terser-webpack-plugin": "^1.2.2",
     "underscore-template-loader": "^1.0.0",
     "vue-loader": "^15.6.2",
-    "vue-template-compiler": "^2.6.2",
     "webpack": "^4.29.1",
     "webpack-cli": "^3.2.3"
   },
