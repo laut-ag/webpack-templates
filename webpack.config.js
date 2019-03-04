@@ -28,6 +28,19 @@ module.exports = ( env = {} ) => {
 			path: path.resolve( __dirname, 'public/assets' ),
 			publicPath: '/assets/',
 		},
+		resolve: {
+			extensions: ['.js', '.vue'],
+			alias: {
+				'@': path.resolve( __dirname, 'src/js' ),
+				Components: path.resolve( __dirname, 'src/js/components' ),
+				Helper: path.resolve( __dirname, 'src/js/helpers' ),
+				Mixins: path.resolve( __dirname, 'src/js/mixins' ),
+				Models: path.resolve( __dirname, 'src/js/models' ),
+				Plugins: path.resolve( __dirname, 'src/js/plugins' ),
+				Views: path.resolve( __dirname, 'src/js/views' ),
+				vue$: 'vue/dist/vue.esm.js',
+			},
+		},
 		devtool: 'inline-source-map',
 		plugins: [
 			new CleanWebpackPlugin( [ 'public' ], { verbose: true } ),
