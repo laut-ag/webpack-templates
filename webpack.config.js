@@ -33,7 +33,7 @@ module.exports = ( env = {} ) => {
 			alias: {
 				'@': path.resolve( __dirname, 'src/js' ),
 				Components: path.resolve( __dirname, 'src/js/components' ),
-				Helper: path.resolve( __dirname, 'src/js/helpers' ),
+				Helpers: path.resolve( __dirname, 'src/js/helpers' ),
 				Mixins: path.resolve( __dirname, 'src/js/mixins' ),
 				Models: path.resolve( __dirname, 'src/js/models' ),
 				Plugins: path.resolve( __dirname, 'src/js/plugins' ),
