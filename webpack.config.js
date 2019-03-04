@@ -76,10 +76,7 @@ module.exports = ( env = {} ) => {
 				},
 				{
 					test: /\.js$/,
-					exclude: file => {
-						( /node_modules/ ).test( file ) &&
-                                        !( /\.vue\.js/ ).test( file )
-					},
+					exclude: /node_modules/,
 					use: {
 						loader: 'babel-loader',
 					},
