@@ -6,6 +6,7 @@ const TerserPlugin = require( 'terser-webpack-plugin' )
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' )
 const Fiber = require( 'fibers' )
 const VueLoaderPlugin = require( 'vue-loader/lib/plugin' )
+const BundleAnalyzerPlugin = require( 'webpack-bundle-analyzer' ).BundleAnalyzerPlugin
 
 const stats = {
 	all: true,
@@ -20,6 +21,7 @@ const stats = {
 
 module.exports = ( env = {} ) => {
 	const isProd = !!env.production
+	const isAnalyze = !!env.analyze
 	const config = {
 		stats: isProd ? 'normal' : stats,
 		entry: './src/js/main.js',
@@ -48,6 +50,7 @@ module.exports = ( env = {} ) => {
 			new HtmlWebpackPlugin( {
 				template: 'src/html/index.html',
 				filename: '../index.html',
+				inject: 'head',
 			} ),
 			new CopyWebpackPlugin( [] ),
 			new VueLoaderPlugin(),
@@ -149,7 +152,18 @@ module.exports = ( env = {} ) => {
 				} ),
 			],
 		},
-
+		devServer: {
+			contentBase: path.join( __dirname, '/public' ),
+		},
 	}
+
+	if ( isAnalyze ) {
+		config.plugins.push( new BundleAnalyzerPlugin() )
+	}
+
+	if ( isProd ) {
+		config.plugins.push( new CleanWebpackPlugin( [ 'public' ], { verbose: true } ) )
+	}
+
 	return config
 }

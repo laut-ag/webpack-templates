@@ -6,6 +6,7 @@ const TerserPlugin = require( 'terser-webpack-plugin' )
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' )
 const Fiber = require( 'fibers' )
 const VueLoaderPlugin = require( 'vue-loader/lib/plugin' )
+const BundleAnalyzerPlugin = require( 'webpack-bundle-analyzer' ).BundleAnalyzerPlugin
 
 const stats = {
 	all: true,
@@ -20,6 +21,7 @@ const stats = {
 
 module.exports = ( env = {} ) => {
 	const isProd = !!env.production
+	const isAnalyze = !!env.analyze
 	const config = {
 		stats: isProd ? 'normal' : stats,
 		entry: './src/js/main.js',
@@ -27,6 +29,19 @@ module.exports = ( env = {} ) => {
 			filename: isProd ? 'js/app.[contenthash].js' : 'js/app.js',
 			path: path.resolve( __dirname, 'public/assets' ),
 			publicPath: '/assets/',
+		},
+		resolve: {
+			extensions: ['.js', '.vue'],
+			alias: {
+				'@': path.resolve( __dirname, 'src/js' ),
+				Components: path.resolve( __dirname, 'src/js/components' ),
+				Helpers: path.resolve( __dirname, 'src/js/helpers' ),
+				Mixins: path.resolve( __dirname, 'src/js/mixins' ),
+				Models: path.resolve( __dirname, 'src/js/models' ),
+				Plugins: path.resolve( __dirname, 'src/js/plugins' ),
+				Views: path.resolve( __dirname, 'src/js/views' ),
+				vue$: 'vue/dist/vue.esm.js',
+			},
 		},
 		devtool: 'inline-source-map',
 		plugins: [
@@ -136,7 +151,18 @@ module.exports = ( env = {} ) => {
 				} ),
 			],
 		},
-
+		devServer: {
+			contentBase: path.join( __dirname, '/public' ),
+		},
 	}
+
+	if ( isAnalyze ) {
+		config.plugins.push( new BundleAnalyzerPlugin() )
+	}
+
+	if ( isProd ) {
+		config.plugins.push( new CleanWebpackPlugin( [ 'public' ], { verbose: true } ) )
+	}
+
 	return config
 }
