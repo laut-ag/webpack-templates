@@ -1,6 +1,6 @@
 {
   "name": "webpack-config-lautfm",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "laut.fm basic webpack configuration",
   "main": "index.js",
   "scripts": {
