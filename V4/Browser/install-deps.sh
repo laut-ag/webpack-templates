@@ -30,5 +30,5 @@ webpack-cli \
 worker-loader \
 @sentry/webpack-plugin"
 
-npm i -D "${DEPS}"
+npm i -D ${DEPS}
 }
