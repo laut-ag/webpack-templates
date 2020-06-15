@@ -28,7 +28,7 @@ webpack \
 webpack-bundle-analyzer \
 webpack-cli \
 worker-loader \
-@sentry/webpack-plugin \
+@sentry/webpack-plugin\
 "
 
 npm i -D "${DEPS}"
